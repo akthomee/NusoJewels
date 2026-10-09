@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- basic metas -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Site Metas -->
+  <link rel="icon" href="images/favicon.png" type="image/gif">
+  <meta name="keywords" content="Jewellery blog, styling tips, jewellery care, Nuso Jewels journal, Nigerian jewellery stories">
+  <meta name="description" content="The Nuso Jewels Journal — styling tips, jewellery care guides, and stories from our Abraka studio.">
+  <meta name="author" content="Nuso Jewels">
+
+  <title>Journal · Nuso Jewels</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/responsive.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+  <style>
+    /* ---------- blog page specific ---------- */
+
+    /* page hero */
+    .page-hero {
+      position: relative;
+      margin-top: 80px;
+      height: 45vh;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      isolation: isolate;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center 40%;
+      background-repeat: no-repeat;
+      filter: brightness(0.45) saturate(1.1);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .page-hero-content h1 {
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+    }
+
+    .page-hero-content p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 1.2rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .breadcrumb a {
+      color: rgba(255, 255, 255, 0.75);
+      transition: var(--transition);
+    }
+
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold); }
+
+    /* featured post */
+    .featured-section {
+      padding: 5rem 2rem 3rem;
+      background: var(--white);
+    }
+
+    .featured-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      background: var(--soft-bg);
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(201, 168, 124, 0.15);
+    }
+
+    .featured-image {
+      height: 100%;
+      min-height: 420px;
+      overflow: hidden;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .featured-inner:hover .featured-image img {
+      transform: scale(1.04);
+    }
+
+    .featured-content {
+      padding: 3rem 3rem 3rem 0;
+    }
+
+    .featured-content .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(201, 168, 124, 0.4);
+      border-radius: 40px;
+      background: rgba(201, 168, 124, 0.08);
+    }
+
+    .featured-content h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+    }
+
+    .featured-content p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 1.8rem;
+    }
+
+    .featured-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .featured-meta img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .featured-meta .dot { color: var(--gold); }
+
+    .featured-content a.read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: var(--transition);
+    }
+
+    .featured-content a.read-link:hover {
+      gap: 1rem;
+      color: #b38f62;
+    }
+
+    /* blog filter bar */
+    .blog-filter {
+      padding: 2rem;
+      background: var(--white);
+      border-bottom: 1px solid rgba(201, 168, 124, 0.15);
+    }
+
+    .blog-filter-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .blog-filter h3 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .filter-cats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .filter-cats button {
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.55rem 1.2rem;
+      border-radius: 40px;
+      border: 1px solid rgba(201, 168, 124, 0.35);
+      background: transparent;
+      color: var(--dark);
+      letter-spacing: 0.3px;
+      transition: var(--transition);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .filter-cats button:hover {
+      background: rgba(201, 168, 124, 0.12);
+      border-color: var(--gold);
+    }
+
+    .filter-cats button.active {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+      box-shadow: 0 8px 18px -8px rgba(201, 168, 124, 0.6);
+    }
+
+    /* blog grid */
+    .blog-grid-section {
+      padding: 4rem 2rem 5rem;
+      background: var(--soft-bg);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .post-card {
+      background: #fff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(201, 168, 124, 0.15);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(201, 168, 124, 0.4);
+    }
+
+    .post-image {
+      position: relative;
+      overflow: hidden;
+      height: 220px;
+    }
+
+    .post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .post-card:hover .post-image img {
+      transform: scale(1.06);
+    }
+
+    .post-cat-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: #fff;
+      color: var(--dark);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 0.4rem 0.9rem;
+      border-radius: 40px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+    }
+
+    .post-content {
+      padding: 1.8rem 1.6rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.3px;
+    }
+
+    .post-meta i {
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    .post-content h4 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+      line-height: 1.35;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: -0.2px;
+    }
+
+    .post-content p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .post-content .post-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      transition: var(--transition);
+      align-self: flex-start;
+    }
+
+    .post-content .post-link:hover {
+      gap: 0.9rem;
+      color: #b38f62;
+    }
+
+    /* pagination */
+    .blog-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .blog-pagination a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 168, 124, 0.35);
+      color: var(--dark);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .blog-pagination a:hover {
+      background: rgba(201, 168, 124, 0.12);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .blog-pagination a.active {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+      box-shadow: 0 8px 18px -8px rgba(201, 168, 124, 0.6);
+    }
+
+    /* newsletter band */
+    .newsletter-band {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, #1f1b16 0%, #2a241e 100%);
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .newsletter-band::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(201, 168, 124, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .newsletter-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter-band h2 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: -0.3px;
+    }
+
+    .newsletter-band p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 480px;
+      margin: 0 auto;
+      border-radius: 40px;
+      overflow: hidden;
+      border: 1px solid rgba(201, 168, 124, 0.4);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .newsletter-form input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .newsletter-form button {
+      background: var(--gold);
+      color: #1f1b16;
+      padding: 1rem 1.6rem;
+      border: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .newsletter-form button:hover {
+      background: #b38f62;
+      color: #fff;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .featured-inner {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .featured-image { min-height: 280px; }
+      .featured-content { padding: 2rem; }
+      .featured-content h2 { font-size: 1.8rem; }
+    }
+
+    @media (max-width: 768px) {
+      .blog-filter-inner { flex-direction: column; align-items: stretch; text-align: center; }
+      .blog-filter h3 { text-align: center; }
+      .filter-cats { justify-content: center; }
+      .blog-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    }
+
+    @media (max-width: 480px) {
+      .page-hero { height: 40vh; min-height: 300px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .featured-content h2 { font-size: 1.5rem; }
+      .newsletter-form { flex-direction: column; border-radius: 20px; }
+      .newsletter-form input { text-align: center; }
+      .newsletter-form button { border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- header starts -->
+  <header id="header">
+    <div class="site-name">Nuso Jewels</div>
+    <div class="container">
+      <input type="checkbox" id="toggle">
+      <div class="label-container">
+        <label for="toggle" id="label-1">&#9781;</label>
+        <label for="toggle" id="label-2">&#10005;</label>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <!-- header ends -->
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>The Nuso Journal</h1>
+      <p>Styling tips, jewellery care, and stories from our studio in Abraka — written for people who love pieces with meaning.</p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Blog</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured post -->
+  <section class="featured-section">
+    <div class="featured-inner">
+
+      <div class="featured-image">
+        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=1200&q=80" alt="Featured blog post — jewellery styling">
+      </div>
+
+      <div class="featured-content">
+        <span class="tag">Featured</span>
+        <h2>The Art of Layering Necklaces Without the Clutter</h2>
+        <p>From delicate chains to bold pendants — learn the simple rules that turn a pile of necklaces into a polished, intentional look. We break down chain lengths, metal mixing, and how many is too many.</p>
+
+        <div class="featured-meta">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Ada Nwosu">
+          <span>Ada Nwosu</span>
+          <span class="dot">·</span>
+          <span>8 min read</span>
+          <span class="dot">·</span>
+          <span>July 14</span>
+        </div>
+
+        <a href="#" class="read-link">Read the Story <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Filter bar -->
+  <section class="blog-filter">
+    <div class="blog-filter-inner">
+      <h3>Latest Posts</h3>
+      <div class="filter-cats">
+        <button class="active">All</button>
+        <button>Styling</button>
+        <button>Care</button>
+        <button>Behind the Scenes</button>
+        <button>Gifting</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog grid -->
+  <section class="blog-grid-section">
+    <div class="blog-grid">
+
+      <!-- Post 1 -->
+      <article class="post-card">
+        <div class="post-image">
+          <span class="post-cat-badge">Care</span>
+          <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80" alt="Jewellery care guide">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <i class="far fa-calendar"></i>
+            <span>July 12</span>
+            <i class="far fa-clock" style="margin-left: 0.6rem;"></i>
+            <span>6 min read</span>
+          </div>
+          <h4>Keep It Shining: A Simple Guide to Jewellery Care</h4>
+          <p>Small daily habits make the biggest difference. Here's how to keep your gold, silver, and pearl pieces looking new for years to come — no harsh chemicals needed.</p>
+          <a href="#" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="post-card">
+        <div class="post-image">
+          <span class="post-cat-badge">Gifting</span>
+          <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80" alt="Choosing the right jewellery gift">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <i class="far fa-calendar"></i>
+            <span>July 08</span>
+            <i class="far fa-clock" style="margin-left: 0.6rem;"></i>
+            <span>5 min read</span>
+          </div>
+          <h4>How to Choose Jewellery as a Gift (Without Getting It Wrong)</h4>
+          <p>Buying jewellery for someone else can feel risky. These five questions make it easier — and end with a gift they'll actually wear.</p>
+          <a href="#" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="post-card">
+        <div class="post-image">
+          <span class="post-cat-badge">Behind the Scenes</span>
+          <img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=800&q=80" alt="Inside the Nuso Jewels studio">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <i class="far fa-calendar"></i>
+            <span>July 01</span>
+            <i class="far fa-clock" style="margin-left: 0.6rem;"></i>
+            <span>4 min read</span>
+          </div>
+          <h4>A Morning in the Studio: How a Nuso Piece Comes to Life</h4>
+          <p>From sketch to polish — a quiet look at the small rituals behind every piece, and why we still do things by hand.</p>
+          <a href="#" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Post 4 -->
+      <article class="post-card">
+        <div class="post-image">
+          <span class="post-cat-badge">Styling</span>
+          <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=800&q=80" alt="Gold jewellery styling ideas">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <i class="far fa-calendar"></i>
+            <span>June 24</span>
+            <i class="far fa-clock" style="margin-left: 0.6rem;"></i>
+            <span>7 min read</span>
+          </div>
+          <h4>Mixing Gold and Silver: Yes, You Really Can</h4>
+          <p>The old rule is finally dead. Here's how to blend warm and cool tones into one cohesive look that feels intentional, not accidental.</p>
+          <a href="#" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Post 5 -->
+      <article class="post-card">
+        <div class="post-image">
+          <span class="post-cat-badge">Care</span>
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80" alt="Jewellery storage ideas">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <i class="far fa-calendar"></i>
+            <span>June 18</span>
+            <i class="far fa-clock" style="margin-left: 0.6rem;"></i>
+            <span>5 min read</span>
+          </div>
+          <h4>How to Store Your Jewellery So It Lasts a Lifetime</h4>
+          <p>Tangled chains and scratched rings are almost always a storage problem. Here are the simple habits that keep pieces in perfect condition.</p>
+          <a href="#" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Post 6 -->
+      <article class="post-card">
+        <div class="post-image">
+          <span class="post-cat-badge">Gifting</span>
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Engagement ring guide">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <i class="far fa-calendar"></i>
+            <span>June 10</span>
+            <i class="far fa-clock" style="margin-left: 0.6rem;"></i>
+            <span>9 min read</span>
+          </div>
+          <h4>The Complete Guide to Choosing an Engagement Ring</h4>
+          <p>Cut, clarity, setting, size — everything you need to know before walking into a jeweller, without the pressure or the jargon.</p>
+          <a href="#" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="blog-pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#" aria-label="Next page"><i class="fas fa-chevron-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Newsletter band -->
+  <section class="newsletter-band">
+    <div class="newsletter-inner">
+      <h2>Stay in the Loop</h2>
+      <p>New arrivals, styling tips, and studio stories — delivered once a month. No spam, ever.</p>
+
+      <form class="newsletter-form" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="Enter your email" aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- footer section start -->
+  <footer id="footer">
+
+    <div class="message-icons">
+
+      <div class="send-message">
+        <input type="email" placeholder="Enter your email">
+        <i class="fas fa-long-arrow-alt-right"></i>
+      </div>
+
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+
+    </div>
+
+    <div class="aboutus-contactus">
+
+      <div class="about-us">
+        <h4>About Us</h4>
+        <p>Nuso Jewels blends traditional craftsmanship with contemporary design. From our studio in Abraka, we create pieces meant to be worn, loved, and passed down — not tucked away in a drawer.</p>
+      </div>
+
+      <div class="contact-us">
+        <h4>Contact Us</h4>
+        <a href=""><i class="fas fa-map-marker-alt"></i><span>Abraka, Delta State, Nigeria</span></a>
+        <a href="tel:+2347048930679"><i class="fas fa-phone"></i><span>+234-70-489-306-79</span></a>
+        <a href="mailto:nusojewels@gmail.com"><i class="fas fa-envelope"></i><span>nusojewels@gmail.com</span></a>
+      </div>
+
+    </div>
+
+    <div id="attribution">
+      <p>&copy; copyright <span>Nuso Jewels</span>
+        <script>document.write(new Date().getFullYear());</script> | All Rights Reserved. Designed and Developed by <a href="https://akthomee.com.ng">Thomee</a>
+      </p>
+    </div>
+  </footer>
+  <!-- footer section end -->
+
+</body>
+</html>
